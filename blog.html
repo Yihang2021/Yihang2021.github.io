@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Yihang Xing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="language-switch">
+        <button onclick="switchLanguage('en')">English</button>
+        <button onclick="switchLanguage('zh')">中文</button>
+    </div>
+
+    <div class="container-wide">
+        <a href="index.html" class="back-to-home" data-lang="en">← Back to Home</a>
+        <a href="index.html" class="back-to-home" data-lang="zh" style="display: none;">← 返回主页</a>
+
+        <header class="blog-header">
+            <h1 data-lang="en">My Blog</h1>
+            <h1 data-lang="zh" style="display: none;">我的博客</h1>
+            <p data-lang="en">A collection of my thoughts, research updates, and experiences.</p>
+            <p data-lang="zh" style="display: none;">记录我的思考、研究进展和个人经历。</p>
+        </header>
+
+        <main class="blog-list">
+            <!-- Post 1: TA Experience -->
+            <article class="blog-summary-card fade-in">
+                <h2 class="summary-title"><a href="posts/ta-experience.html" data-lang="en">My Experience as a TA for Computer Programming</a><a href="posts/ta-experience.html" data-lang="zh" style="display: none;">我的计算机程序设计助教经历</a></h2>
+                <p class="summary-meta">
+                    <span data-lang="en">September 23, 2025</span>
+                    <span data-lang="zh" style="display: none;">2025年9月23日</span>
+                </p>
+                <p class="summary-excerpt" data-lang="en">This semester, I had the privilege of being a Teaching Assistant for the "Computer Programming L" course at USTC. It was a rewarding journey, filled with challenges and learning opportunities...</p>
+                <p class="summary-excerpt" data-lang="zh" style="display: none;">这个学期，我有幸担任了中国科学技术大学“计算机程序设计L”课程的助教。这是一段充满挑战和学习机会的宝贵经历...</p>
+                <a href="posts/ta-experience.html" class="read-more" data-lang="en">Read More →</a>
+                <a href="posts/ta-experience.html" class="read-more" data-lang="zh" style="display: none;">阅读全文 →</a>
+            </article>
+
+            <!-- Post 2: Research at NTHU -->
+            <article class="blog-summary-card fade-in">
+                <h2 class="summary-title"><a href="posts/research-nthu.html" data-lang="en">Summer Research at National Tsinghua University</a><a href="posts/research-nthu.html" data-lang="zh" style="display: none;">暑期在台湾清华大学的研究经历</a></h2>
+                <p class="summary-meta">
+                    <span data-lang="en">August 30, 2025</span>
+                    <span data-lang="zh" style="display: none;">2025年8月30日</span>
+                </p>
+                <p class="summary-excerpt" data-lang="en">I spent an amazing summer as a research assistant at the Institute of Statistics and Data Science at NTHU. I worked on a project focused on analyzing large-scale social media data...</p>
+                <p class="summary-excerpt" data-lang="zh" style="display: none;">我在台湾清华大学统计与数据科学研究所度过了一个愉快的暑假，担任研究助理。我参与了一个专注于分析大规模社交媒体数据的项目...</p>
+                <a href="posts/research-nthu.html" class="read-more" data-lang="en">Read More →</a>
+                <a href="posts/research-nthu.html" class="read-more" data-lang="zh" style="display: none;">阅读全文 →</a>
+            </article>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
