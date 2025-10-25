@@ -185,3 +185,24 @@ document.addEventListener('DOMContentLoaded', () => {
     createMeteors();
     animate();
 });
+
+function updateVisitorCount() {
+    const countElement = document.getElementById('visitor-count');
+    if (!countElement) return;
+
+    const namespace = 'yihang-xing-page';
+    const key = 'visitors';
+    const apiUrl = `https://api.countapi.xyz/hit/${namespace}/${key}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            countElement.textContent = data.value;
+        })
+        .catch(error => {
+            console.error('Error fetching visitor count:', error);
+            countElement.textContent = 'N/A';
+        });
+}
+
+document.addEventListener('DOMContentLoaded', updateVisitorCount);
