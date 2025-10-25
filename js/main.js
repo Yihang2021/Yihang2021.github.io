@@ -206,3 +206,49 @@ function updateVisitorCount() {
 }
 
 document.addEventListener('DOMContentLoaded', updateVisitorCount);
+
+// Improved visitor count fetch with better error handling and local fallback
+async function updateVisitorCount() {
+    const countElement = document.getElementById('visitor-count');
+    if (!countElement) return;
+
+    // If page is opened via file:// some browsers or extensions may block network requests.
+    if (location && location.protocol === 'file:') {
+        console.warn('Page loaded via file:// — network requests for third-party APIs may be blocked. Serve site via a local web server for accurate visitor counts.');
+    }
+
+    const namespace = 'yihang-xing-page';
+    const key = 'visitors';
+    const apiUrl = `https://api.countapi.xyz/hit/${namespace}/${key}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+        if (data && typeof data.value === 'number') {
+            countElement.textContent = data.value;
+            return;
+        } else {
+            throw new Error('Unexpected API response: ' + JSON.stringify(data));
+        }
+    } catch (error) {
+        console.error('Error fetching visitor count:', error);
+
+        // Fallback: use localStorage-based counter for local testing. This is NOT a global visitor counter,
+        // but helps to verify the UI and prevents showing N/A during offline/local testing.
+        try {
+            const localKey = 'visitor-count-local';
+            let localCount = parseInt(localStorage.getItem(localKey) || '0', 10);
+            if (isNaN(localCount)) localCount = 0;
+            localCount += 1;
+            localStorage.setItem(localKey, String(localCount));
+            countElement.textContent = `${localCount} (local)`;
+        } catch (e) {
+            // If even localStorage fails (private mode etc.), fall back to N/A
+            console.error('Local fallback failed:', e);
+            countElement.textContent = 'N/A';
+        }
+    }
+}
