@@ -240,6 +240,54 @@ a:hover {
     font-size: 0.9rem;
 }
 
+.project-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    border-bottom: 1px solid var(--border-color);
+}
+.project-item:hover {
+    background-color: rgba(30, 45, 70, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 170, 255, 0.2);
+    transform: translateY(-5px);
+}
+.project-item:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.project-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+.project-status {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+.project-status.ongoing {
+    background-color: #00b894; /* Green */
+}
+.project-status.completed {
+    background-color: #636e72; /* Gray */
+}
+.project-details {
+    margin: 4px 0;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
 
 .fade-in {
     animation: fadeIn 1s ease-out forwards;
