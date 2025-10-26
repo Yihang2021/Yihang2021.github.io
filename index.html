@@ -3,228 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yihang Xing's Personal Academic Page</title>
+    <title>Blog - Yihang Xing</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <canvas id="particle-canvas"></canvas>
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
 
-        <div class="language-switch">
+    <div class="language-switch">
         <button onclick="switchLanguage('en')">English</button>
         <button onclick="switchLanguage('zh')">中文</button>
-        </div>
+    </div>
 
-    <header class="profile-section">
-        <img src="images/mainpfp.jpg" alt="Profile Avatar" class="avatar">
-        <h1 data-lang="en">Yihang Xing</h1>
-        <h1 data-lang="zh" style="display: none;">邢祎航</h1>
-        
-        <p class="title" data-lang="en"><a href="https://en.scgy.ustc.edu.cn/main.htm" target="_blank">School of the Gifted Young</a></p>
-        <p class="title" data-lang="en"><a href="https://en.ustc.edu.cn/" target="_blank">University of Science and Technology of China</a></p>
-        <!-- <p class="title" data-lang="en"><a href="https://base.ustc.edu.cn/" target="_blank">BASE Group</a>, <a href="https://bigdata.ustc.edu.cn/" target="_blank">State Key Laboratory of Cognitive Intelligence</a></p> -->
-        
-        <p class="title" data-lang="zh" style="display: none;"><a href="https://sgy.ustc.edu.cn/main.htm" target="_blank">少年班学院</a></p>
-        <p class="title" data-lang="zh" style="display: none;"><a href="https://www.ustc.edu.cn/" target="_blank">中国科学技术大学</a></p>
-        <!-- <p class="title" data-lang="zh" style="display: none;"><a href="https://bigdata.ustc.edu.cn/" target="_blank">认知智能全国重点实验室</a> <a href="https://base.ustc.edu.cn/" target="_blank">BASE研究组</a></p> -->
+    <div class="container-wide">
+        <a href="index.html" class="back-to-home" data-lang="en">← Back to Home</a>
+        <a href="index.html" class="back-to-home" data-lang="zh" style="display: none;">← 返回主页</a>
 
-        <p class="email"><a href="mailto:Oliveira@mail.ustc.edu.cn">Oliveira@mail.ustc.edu.cn</a></p>
-        <p class="email"><a href="mailto:Oliveira@ustc.edu">Oliveira@ustc.edu</a></p>
+        <header class="blog-header">
+            <h1 data-lang="en">My Blog</h1>
+            <h1 data-lang="zh" style="display: none;">我的博客</h1>
+            <p data-lang="en">A collection of my thoughts, research updates, and experiences.(My blog section is not yet fully developed so the content is not of reference value.)</p>
+            <p data-lang="zh" style="display: none;">记录我的思考、研究进展和个人经历。（我的博客部分尚未制作完全，内容不具有参考价值。）</p>
         </header>
 
-    <div class="container">
-        <section class="fade-in">
-            <h2 data-lang="en">About Me</h2>
-            <h2 data-lang="zh" style="display: none;">关于我</h2>
-            <blockquote data-lang="en">Weakness and ignorance are not obstacles to survival, arrogance is.</blockquote>
-            <blockquote data-lang="zh" style="display: none;">弱小和无知不是生存的障碍。傲慢才是。</blockquote>
-            <p data-lang="en">
-                I am an undergraduate student at the School of the Gifted Young, University of Science and Technology of China, majoring in Data Science and Big Data Technology. I am currently learning and exploring the field of artificial intelligence, hoping to contribute to the advancement of human science and technology. I am not adept at rote memorization or repetitive tasks, so I haven't achieved 'success' in the traditional sense in the classroom. However, I have ample passion and capability for project work and teamwork, which allows me to excel in collaborative research projects. As a third-year undergraduate, I have not yet determined a specific future direction, as I believe that only through sufficient trial and experience can one's potential be fully unleashed. Therefore, I am enthusiastic about any creative and interesting work and am willing to constantly try and learn in cutting-edge technology fields.
-            </p>
-            <p data-lang="zh" style="display: none;">
-                我是中国科学技术大学少年班学院数据科学与大数据技术专业的本科生，目前正在人工智能领域学习与探索，希望能对人类科学技术的发展作出自己的贡献。我不擅长死板的记忆与重复工作，因此在课堂中并没能取得传统意义上的”成功“；但我对于项目工作与团队协作有充足的热情与能力，这让我能够很好地胜任合作研究项目。作为一名本科三年级的学生，我并没有确定未来明确的发展方向，我认为只有充分的尝试和体验才可以最大激发一个人的潜能。因此，我热衷于任何创造性的、有趣的工作，并愿意在前沿科技领域不断尝试与学习。
-            </p>
-            <p data-lang="en">
-                At the same time, I am also passionate about life, with a love for sports, outdoor hiking, and gaming. In high school, as a founding member of the school volleyball team, I participated twice in the city volleyball league. In university, as a member of the School of the Gifted Young's soccer and volleyball teams, I won the 'Fledgling Eagle Cup' championship in soccer and third place in the 'New Star Cup' for volleyball.
-            </p>
-            <p data-lang="zh" style="display: none;">
-                同时，我对生活也充满热情，热爱运动、户外徒步与游戏。我曾在高中时作为校排球队的创始成员两度参与市排球联赛，我也在大学时作为少年班学院足球队、排球队的一员分别获得足球”雏鹰杯“冠军和排球”新星杯“季军。
-            </p>
-            <blockquote data-lang="en">We're all bugs in the gutter, but someone has to look up at the stars.</blockquote>
-            <blockquote data-lang="zh" style="display: none;">我们都是阴沟里的虫子，但总是还得有人仰望星空。</blockquote>
-            <p data-lang="en">
-                Our future is a sea of stars. May we all become stargazers, find our own passions and directions, and dedicate our lives to them.
-            </p>
-            <p data-lang="zh" style="display: none;">
-                我们的前途，是星辰大海。愿我们都能做那追星星的人，找到自己的爱好与方向，奉献一生。
-            </p>
-        </section>
+        <main class="blog-list">
+            <!-- Post 1: TA Experience -->
+            <article class="blog-summary-card fade-in">
+                <h2 class="summary-title"><a href="posts/ta-experience.html" data-lang="en">My Experience as a TA for Computer Programming</a><a href="posts/ta-experience.html" data-lang="zh" style="display: none;">我的计算机程序设计助教经历</a></h2>
+                <p class="summary-meta">
+                    <span data-lang="en">September 23, 2025</span>
+                    <span data-lang="zh" style="display: none;">2025年9月23日</span>
+                </p>
+                <p class="summary-excerpt" data-lang="en">This semester, I had the privilege of being a Teaching Assistant for the "Computer Programming L" course at USTC. It was a rewarding journey, filled with challenges and learning opportunities...</p>
+                <p class="summary-excerpt" data-lang="zh" style="display: none;">这个学期，我有幸担任了中国科学技术大学“计算机程序设计L”课程的助教。这是一段充满挑战和学习机会的宝贵经历...</p>
+                <a href="posts/ta-experience.html" class="read-more" data-lang="en">Read More →</a>
+                <a href="posts/ta-experience.html" class="read-more" data-lang="zh" style="display: none;">阅读全文 →</a>
+            </article>
 
-        <section class="fade-in">
-            <h2 data-lang="en">Education</h2>
-            <h2 data-lang="zh" style="display: none;">教育经历</h2>
-            <ul>
-            <li data-lang="en"><strong>B.S. in Data Science and Big Data Technology, School of the Gifted Young(SGY), University of Science and Technology of China(USTC)</strong> (2023-Present)</li>
-            <li data-lang="zh" style="display: none;"><strong>本科, 数据科学与大数据技术, 中国科学技术大学少年班学院</strong> (2023年至今)</li>
-            <li data-lang="en"><strong>Huaiyin High School of Jiangsu Province</strong> (2018-2023)</li>
-            <li data-lang="zh" style="display: none;"><strong>江苏省淮阴中学</strong> (2018-2023)</li>
-            </ul>
-        </section>
+            <!-- Post 2: Research at NTHU -->
+            <article class="blog-summary-card fade-in">
+                <h2 class="summary-title"><a href="posts/research-nthu.html" data-lang="en">Summer Research at National Tsinghua University</a><a href="posts/research-nthu.html" data-lang="zh" style="display: none;">暑期在台湾清华大学的研究经历</a></h2>
+                <p class="summary-meta">
+                    <span data-lang="en">August 30, 2025</span>
+                    <span data-lang="zh" style="display: none;">2025年8月30日</span>
+                </p>
+                <p class="summary-excerpt" data-lang="en">I spent an amazing summer as a research assistant at the Institute of Statistics and Data Science at NTHU. I worked on a project focused on analyzing large-scale social media data...</p>
+                <p class="summary-excerpt" data-lang="zh" style="display: none;">我在台湾清华大学统计与数据科学研究所度过了一个愉快的暑假，担任研究助理。我参与了一个专注于分析大规模社交媒体数据的项目...</p>
+                <a href="posts/research-nthu.html" class="read-more" data-lang="en">Read More →</a>
+                <a href="posts/research-nthu.html" class="read-more" data-lang="zh" style="display: none;">阅读全文 →</a>
+            </article>
+        </main>
+    </div>
 
-        <section class="fade-in">
-            <h2 data-lang="en">Honors</h2>
-            <h2 data-lang="zh" style="display: none;">荣誉</h2>
-            <ul>
-            <li data-lang="en"><strong>Outstanding Freshman Scholarship(Bronze)</strong>, USTC (Fall 2023)</li>
-            <li data-lang="zh" style="display: none;"><strong>优秀新生奖学金铜奖</strong>, 中国科学技术大学 (2023年秋)</li>
-            <li data-lang="en"><strong>Rose Scholarship(for volunteer service and virtue)</strong>, School of the Gifted Young, USTC (Spring 2025)</li>
-            <li data-lang="zh" style="display: none;"><strong>蔷薇奖学金(奉公德育)</strong>, 中国科学技术大学少年班学院 (2025年春)</li>
-            <li data-lang="en"><strong>"Ta-You Wu Scholars" Research Internship Scholarship</strong>, National Tsinghua University (Summer 2025)</li>
-            <li data-lang="zh" style="display: none;"><strong>"吴大猷学者"研究实习奖学金</strong>, 台湾清华大学 (2025年夏)</li>
-            <li data-lang="en"><strong>Outstanding Peer Academic Counselor Prize level A </strong>, School of Physics, USTC (Fall 2025)</li>
-            <li data-lang="zh" style="display: none;"><strong>"朋辈助学"优秀导师奖金</strong>, 中国科学技术大学物理学院 (2025年秋)</li>
-            </ul>
-        </section>
-
-        <section class="fade-in">
-            <h2 data-lang="en">Experience</h2>
-            <h2 data-lang="zh" style="display: none;">任职经历</h2>
-            <ul>
-            <li data-lang="en"><strong>Peer Academic Counselor</strong>, for the course "Mechanics A", School of Physics, USTC (Fall 2024)</li>
-            <li data-lang="zh" style="display: none;"><strong>"朋辈助学"导师</strong>, 《力学A》课程, 中国科学技术大学物理学院 (2024年秋季学期)</li>
-            <li data-lang="en"><strong>Peer Academic Counselor</strong>, for thr course "Electromagnetism A", School of Physics, USTC (Spring 2025)</li>
-            <li data-lang="zh" style="display: none;"><strong>"朋辈助学"导师</strong>, 《电磁学A》课程, 中国科学技术大学物理学院 (2025年春季学期)</li>
-            <li data-lang="en"><strong>Undergraduate Research Assistant</strong>, "Ta-You Wu Scholars Cross-Strait Summer Research Program", Institute of Statistics and Data Science,  National Tsinghua University</strong> (July-Aug. 2025)</li>
-            <li data-lang="zh" style="display: none;"><strong>本科生研究助理</strong>, “吴大猷学者两岸暑期研究项目”, 台湾清华大学统计与数据科学研究所 (2025年7月-8月)</li>
-            <li data-lang="en"><strong>Teaching Assistant</strong>, Computer Programming L(CS1003L.03), USTC (Fall 2025)</li>
-            <li data-lang="zh" style="display: none;"><strong>助教</strong>, 计算机程序设计L, 中国科学技术大学 (2025年秋季学期)</li>
-            <li data-lang="en"><strong>Second Classroom Teacher</strong>, popular science course in physics, The Middle School Attached to USTC (Fall 2025-Spring 2026)</li>
-            <li data-lang="zh" style="display: none;"><strong>"第二课堂"小老师</strong>, 物理科普课程, 中国科学技术大学附属中学 (2025年秋季学期-2026年春季学期)</li>
-            </ul>
-        </section>
-
-        <section class="fade-in">
-            <h2 data-lang="en">Research Projects</h2>
-            <h2 data-lang="zh" style="display: none;">研究项目</h2>
-            
-            <div class="project-item">
-                <div class="project-header">
-                    <p class="project-title" data-lang="en">"Xin He Scholar" Research Program, School of the Gifted Young, USTC</p>
-                    <p class="project-title" data-lang="zh" style="display: none;">“新荷学者”研究项目, 中国科学技术大学少年班学院</p>
-                    <span class="project-status ongoing" data-lang="en">Ongoing</span>
-                    <span class="project-status ongoing" data-lang="zh" style="display: none;">进行中</span>
-                </div>
-                <p class="project-details" data-lang="en"><strong>Duration:</strong> Nov. 2025 - Nov. 2026</p>
-                <p class="project-details" data-lang="zh" style="display: none;"><strong>项目周期:</strong> 2025年11月 - 2026年11月</p>
-                <p class="project-details" data-lang="en"><strong>Topic:</strong> Error Prevention in Tool-Augmented LLM.</p>
-                <p class="project-details" data-lang="zh" style="display: none;"><strong>研究主题:</strong> 工具增强大模型智能体纠错的预防机制。</p>
-            </div>
-
-            <div class="project-item">
-                <div class="project-header">
-                    <p class="project-title" data-lang="en">"Ta-You Wu Scholars" Summer Research Program, National Tsinghua University</p>
-                    <p class="project-title" data-lang="zh" style="display: none;">“吴大猷学者”暑期研究项目, 台湾清华大学</p>
-                    <span class="project-status completed" data-lang="en">Completed</span>
-                    <span class="project-status completed" data-lang="zh" style="display: none;">已完成</span>
-                </div>
-                <p class="project-details" data-lang="en"><strong>Duration:</strong> July 2025 - Aug. 2025</p>
-                <p class="project-details" data-lang="zh" style="display: none;"><strong>项目周期:</strong> 2025年7月 - 2025年8月</p>
-                <p class="project-details" data-lang="en"><strong>Topic:</strong> A Simulation and Comparative Study of Ecological Statistical Models.</p>
-                <p class="project-details" data-lang="zh" style="display: none;"><strong>研究主题:</strong> 生态统计模型的仿真比较研究。</p>
-            </div>
-        </section>>
-
-        <section class="fade-in">
-            <h2 data-lang="en">Research Interests</h2>
-            <h2 data-lang="zh" style="display: none;">研究兴趣</h2>
-            <ul>
-                <li><span data-lang="en">Large Language Models</span><span data-lang="zh" style="display: none;">大语言模型</span></li>
-                <li><span data-lang="en">LLM Agents</span><span data-lang="zh" style="display: none;">AI智能体</span></li>
-                <li><span data-lang="en">Data Science</span><span data-lang="zh" style="display: none;">数据科学</span></li>
-                <li><span data-lang="en">"Anything Creative and Interesting"--I'm willing to study & try.</span><span data-lang="zh" style="display: none;">"任何创造性的、有趣的东西"--我很乐意学习与尝试。</span></li>
-            </ul>
-        </section>
-
-        <section class="fade-in">
-            <h2 data-lang="en">Publications</h2>
-            <h2 data-lang="zh" style="display: none;">发表</h2>
-            
-            <div class="publication">
-                <p class="publication-title" data-lang="en">I have no pubilcations yet, but I'm currently working on a project in LLM Agent.</p>
-                <p class="publication-title" data-lang="zh" style="display: none;">我目前尚无已发表论文,但我正致力于一项ai智能体相关的研究。</p>
-                
-                <p class="publication-authors" data-lang="en"><strong>Yihang Xing</strong>, Co-Authors</p>
-                <p class="publication-authors" data-lang="zh" style="display: none;"><strong>邢祎航</strong>, 其他作者</p>
-                
-                <p class="publication-venue" data-lang="en"><em>Internetional Conference on Machine Learning (ICML)</em>, 2026. ←as my dream</p>
-                <p class="publication-venue" data-lang="zh" style="display: none;"><em>国际机器学习会议 (ICML)</em>, 2023.</p>
-                
-                <div class="publication-links">
-                    <span data-lang="en">
-                        <a href="#">[PDF]</a>
-                        <a href="#">[Code]</a>
-                        <a href="#">[BibTeX]</a>
-                    </span>
-                    <span data-lang="zh" style="display: none;">
-                        <a href="#">[论文]</a>
-                        <a href="#">[代码]</a>
-                        <a href="#">[引用]</a>
-                    </span>
-                </div>
-            </div>
-
-            <!-- <div class="publication">
-                <p class="publication-title" data-lang="en">Understanding Deep Learning Models for Image Recognition</p>
-                <p class="publication-title" data-lang="zh" style="display: none;">理解用于图像识别的深度学习模型</p>
-                
-                <p class="publication-authors" data-lang="en">John von Neumann, <strong>Yihang Xing</strong>, Donald Knuth</p>
-                <p class="publication-authors" data-lang="zh" style="display: none;">约翰·冯·诺伊曼, <strong>邢祎航</strong>, 高德纳</p>
-                
-                <p class="publication-venue" data-lang="en"><em>Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 2022.</p>
-                <p class="publication-venue" data-lang="zh" style="display: none;"><em>计算机视觉与模式识别会议 (CVPR)</em>, 2022.</p>
-                
-                <div class="publication-links">
-                    <span data-lang="en">
-                        <a href="#">[PDF]</a>
-                        <a href="#">[Code]</a>
-                        <a href="#">[BibTeX]</a>
-                    </span>
-                    <span data-lang="zh" style="display: none;">
-                        <a href="#">[论文]</a>
-                        <a href="#">[代码]</a>
-                        <a href="#">[引用]</a>
-                    </span>
-                </div>
-            </div> -->
-
-        </section>
-
-        <section class="fade-in">
-            <h2 data-lang="en">Links</h2>
-            <h2 data-lang="zh" style="display: none;">链接</h2>
-            <ul>
-            <li><a href="blog.html" data-lang="en">Blog</a><a href="blog.html" data-lang="zh" style="display: none;">博客</a></li>
-            <li><a href="https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=AH8HC4z-v5_DLRMFRjClI-3HJz1sJbw1n36nWmCLdTZvEKLs_9eDoMR0DVrG59SnPWgBEgkdvqXKZl86GcJC-A&user=j40Kcu4AAAAJ" target="_blank">Google Scholar</a></li>
-            <li><a href="https://github.com/ThinY1" target="_blank">GitHub</a></li>
-            <!-- <li><a href="#" target="_blank">LinkedIn</a></li> -->
-            </ul>
-        </section>
-        </div>
-
-        <footer>
-            <p>
-                <span data-lang="en">Total Visitors: </span>
-                <span data-lang="zh" style="display: none;">总访问量: </span>
-                <span id="busuanzi_container_site_pv" style="display:none">
-                    <span id="busuanzi_value_site_pv"></span>
-                </span>
-            </p>
-        </footer>
-
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <script src="js/main.js"></script>
-    </body>
-    </html>
+    <script src="js/main.js"></script>
+</body>
+</html>
