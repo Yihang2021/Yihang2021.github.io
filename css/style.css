@@ -491,7 +491,7 @@ a:hover {
     margin: 25px 0;
 }
 
-.post-full-content blockquote {
+section blockquote {
     margin: 25px 0;
     padding: 15px 25px;
     border-left: 4px solid var(--primary-color);
