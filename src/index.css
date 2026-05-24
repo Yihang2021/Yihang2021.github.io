@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Lora", "Georgia", ui-serif, serif;
+  --font-display: "EB Garamond", "Georgia", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-[#fdfbf7] text-[#2c2a29] selection:bg-amber-100;
+  }
+}
+
