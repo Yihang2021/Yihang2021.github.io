@@ -94,7 +94,7 @@ export default function App() {
             >
               <div className="w-40 h-40 rounded-xl overflow-hidden border-4 border-[#003366]/10 shadow-lg hover:border-[#003366] transition-colors duration-500 bg-white">
                 <img 
-                  src="https://picsum.photos/seed/yihang/400/400" 
+                  src="/Avat.jpg" 
                   alt="Yihang Xing" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
@@ -164,14 +164,14 @@ export default function App() {
                 </blockquote>
                 <p className="text-zinc-600 leading-relaxed mb-4">
                   {t(
-                    'I am an undergraduate student at the School of the Gifted Young, University of Science and Technology of China, majoring in Data Science and Big Data Technology. I am currently learning and exploring the field of artificial intelligence, hoping to contribute to the advancement of human science and technology. I have ample passion and capability for project work and teamwork, which allows me to excel in collaborative research projects. As a third-year undergraduate, I have not yet determined a specific future direction, as I believe that only through sufficient trial and experience can one\'s potential be fully unleashed. Therefore, I am enthusiastic about any creative and interesting work and am willing to constantly try and learn in cutting-edge technology fields.',
+                    'I am an undergraduate student at the School of the Gifted Young, University of Science and Technology of China, majoring in Data Science and Big Data Technology. I am currently learning and exploring the field of artificial intelligence, hoping to contribute to the advancement of human society. I have ample passion and capability for project work and teamwork, which allows me to excel in collaborative research projects. As a third-year undergraduate, I have not yet determined a specific future direction, as I believe that only through sufficient trial and experience can one\'s potential be fully unleashed. Therefore, I am enthusiastic about any creative and interesting work and am willing to constantly try and learn in cutting-edge technology fields.',
                     '我是中国科学技术大学少年班学院数据科学与大数据技术专业的本科生，目前正在人工智能领域学习与探索，希望能对人类科学技术的发展作出自己的贡献。我对于项目工作与团队协作有充足的热情与能力，这让我能够很好地胜任合作研究项目。作为一名本科三年级的学生，我并没有确定未来明确的发展方向，我认为只有充分的尝试和体验才可以最大激发一个人的潜能。因此，我热衷于任何创造性的、有趣的工作，并愿意在前沿科技领域不断尝试与学习。'
                   )}
                 </p>
                 <p className="text-zinc-600 leading-relaxed">
                   {t(
-                    'At the same time, I am also passionate about life, with a love for sports, outdoor hiking, and gaming. In high school, as a founding member of the school volleyball team, I participated twice in the city volleyball league. In university, as a member of the School of the Gifted Young\'s soccer and volleyball teams, I won the \'Fledgling Eagle Cup\' championship in soccer and third place in the \'New Star Cup\' for volleyball.',
-                    '同时，我对生活也充满热情，热爱运动、户外徒步与游戏。我曾在高中时作为校排球队的创始成员两度参与市排球联赛，我也在大学时作为少年班学院足球队、排球队的一员分别获得足球”雏鹰杯“冠军和排球”新星杯“季军。'
+                    'At the same time, I am also passionate about life, with a love for sports, nature exploration, and intercultural communication. In high school, as a founding member of the school volleyball team, I participated twice in the city volleyball league. In university, as a member of the School of the Gifted Young\'s soccer and volleyball teams, I won the \'Fledgling Eagle Cup\' championship in soccer and third place in the \'New Star Cup\' for volleyball.',
+                    '同时，我对生活也充满热情，热爱运动、自然探险以及跨文化交流。我曾在高中时作为校排球队的创始成员两度参与市排球联赛，我也在大学时作为少年班学院足球队、排球队的一员分别获得足球”雏鹰杯“冠军和排球”新星杯“季军。'
                   )}
                 </p>
               </div>
@@ -217,7 +217,7 @@ export default function App() {
                   <strong>{t('Yihang Xing', '邢祎航')}</strong>, Co-Authors
                 </p>
                 <p className="text-[#003366] text-sm italic mb-4">
-                  {t('Internetional Conference on Machine Learning (ICML), 2026. ← as my dream', '国际机器学习会议 (ICML), 2026. ← 梦想')}
+                  {t('NeurIPS, 2026. ← as my goal', 'NeurIPS, 2026. ← 目标')}
                 </p>
                 <div className="flex gap-4 text-xs font-bold uppercase tracking-wider text-[#003366]">
                   <span className="opacity-50 cursor-not-allowed">[PDF]</span>
@@ -272,7 +272,7 @@ export default function App() {
                   date="Fall 2025"
                 />
                 <HonorItem 
-                  title={t('Xiangyang Scholarship by Alumni', '九四级少年班向阳奖学金')}
+                  title={t('Xiangyang Scholarship by Alumni', '九四级少年班零零班向阳奖学金')}
                   org="SGY, USTC"
                   date="Fall 2025"
                 />
@@ -300,12 +300,12 @@ export default function App() {
                 />
                 <ExperienceItem 
                   role={t('Research Assistant', '本科生研究助理')}
-                  desc={t('NTHU, Institute of Statistics', '台湾清华大学统计所')}
+                  desc={t('NTHU, Institute of Statistics', '台湾清华大学统计与数据科学研究所')}
                   date="Summer 2025"
                 />
                 <ExperienceItem 
                   role={t('Peer Academic Counselor', '朋辈助学导师')}
-                  desc={t('Mechanics & Electromagnetism', '力学与电磁学')}
+                  desc={t('Mechanics & Electromagnetism', '力学课程与电磁学课程')}
                   date="2024 - 2025"
                 />
               </div>
@@ -316,10 +316,10 @@ export default function App() {
               <SectionHeader icon={<Lightbulb size={22} />} title={t('Research Interests', '研究兴趣')} />
               <div className="flex flex-wrap gap-2">
                 {[
-                  t('Large Language Models', '大语言模型'),
                   t('LLM Agents', 'AI智能体'),
+                  t('Big Data in politics & international relations', '大数据在政治与国际关系中的运用'),
                   t('Data Science', '数据科学'),
-                  t('Creative & Interesting', '创造性与趣味性')
+                  t('Anything Creative & Interesting', '任何具有创造性与趣味性的事物')
                 ].map((interest, i) => (
                   <span key={i} className="px-3 py-1 bg-amber-50 text-amber-900 text-sm font-medium rounded-full border border-amber-200/80">
                     {interest}
