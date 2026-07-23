@@ -96,7 +96,7 @@ export default function App() {
             >
               <div className="w-40 h-40 rounded-xl overflow-hidden border-4 border-[#003366]/10 shadow-lg hover:border-[#003366] transition-colors duration-500 bg-white">
                 <img 
-                  src="/Avat.jpg" 
+                  src="./Avat.jpg" 
                   alt="Yihang Xing" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
