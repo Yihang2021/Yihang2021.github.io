@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Mail, 
@@ -64,26 +64,28 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-screen relative overflow-hidden flex flex-col items-center py-10 px-4 md:px-8">
+      <StarryLakeBackground />
+      
       {/* Navigation / Language Switch */}
-      <nav className="fixed top-0 right-0 p-6 z-50">
-        <div className="flex gap-2 bg-white/80 backdrop-blur-md border border-zinc-200 rounded-full p-1 shadow-sm">
+      <nav className="fixed top-6 right-6 z-50">
+        <div className="flex gap-2 bg-white/80 backdrop-blur-md border border-zinc-200 rounded-full p-1 shadow-md">
           <button 
             onClick={() => setLang('en')}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === 'en' ? 'bg-zinc-900 text-white shadow-md' : 'text-zinc-500 hover:text-zinc-900'}`}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === 'en' ? 'bg-[#003366] text-white shadow-md' : 'text-zinc-600 hover:text-zinc-900'}`}
           >
             English
           </button>
           <button 
             onClick={() => setLang('zh')}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === 'zh' ? 'bg-zinc-900 text-white shadow-md' : 'text-zinc-500 hover:text-zinc-900'}`}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === 'zh' ? 'bg-[#003366] text-white shadow-md' : 'text-zinc-600 hover:text-zinc-900'}`}
           >
             中文
           </button>
         </div>
       </nav>
 
-      <main className="max-w-5xl mx-auto px-6 pt-24 pb-20">
+      <main className="max-w-5xl w-full mx-auto px-6 md:px-14 py-10 md:py-16 bg-[#fdfbf7]/94 backdrop-blur-md rounded-2xl border border-white/40 shadow-2xl relative z-10 my-8">
         {/* Header Section */}
         <header className="mb-20">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-10">
@@ -240,8 +242,8 @@ export default function App() {
                   date="2023 - Present"
                 />
                 <TimelineItem 
-                  title={t('Huaiyin High School', '江苏省淮阴中学')}
-                  subtitle={t('Jiangsu Province', '江苏省')}
+                  title={t('High School Diploma', '高中，江苏省淮阴中学')}
+                  subtitle={t('Huaiyin High School, Jiangsu Province', '江苏省')}
                   date="2018 - 2023"
                 />
               </div>
@@ -338,25 +340,24 @@ export default function App() {
             </section>
           </div>
         </div>
+        <footer className="border-t border-zinc-200/60 mt-16 pt-8 text-center">
+          <p className="text-zinc-700 font-medium text-base mb-2 font-display">
+            {t('Yihang Xing 2025', '邢祎航 2025')}
+          </p>
+          <div className="mt-2 inline-flex items-center gap-2 px-4 py-1.5 bg-white/60 border border-zinc-200/80 rounded-full text-xs text-zinc-500 font-serif italic shadow-sm">
+            <span>{t('Total Visitors', '总访问量')}</span>
+            <span className="text-zinc-900 font-bold not-italic font-sans">{visitorCount}</span>
+          </div>
+        </footer>
       </main>
 
       {/* Hidden Busuanzi element to receive dynamic values */}
       <span id="busuanzi_value_site_pv" style={{ display: 'none' }}></span>
-
-      <footer className="border-t border-zinc-200 bg-zinc-50 py-12 text-center">
-        <p className="text-zinc-700 font-medium text-base mb-2">
-          {t('Yihang Xing 2025', '邢祎航 2025')}
-        </p>
-        <div className="mt-2 inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-zinc-200 rounded-full text-xs text-zinc-500 font-serif italic">
-          <span>{t('Total Visitors', '总访问量')}</span>
-          <span className="text-zinc-900 font-bold not-italic">{visitorCount}</span>
-        </div>
-      </footer>
     </div>
   );
 }
 
-function SectionHeader({ icon, title }: { icon: React.ReactNode; title: string }) {
+function SectionHeader({ icon, title }: { icon: ReactNode; title: string }) {
   return (
     <div className="flex items-center gap-3 mb-8">
       <div className="p-2 bg-[#003366] text-white rounded-lg shadow-sm">
@@ -456,5 +457,218 @@ function LinkItem({ href, label }: { href: string; label: string }) {
       <span className="text-sm font-medium text-zinc-700 group-hover:text-[#003366]">{label}</span>
       <ExternalLink size={14} className="text-zinc-400 group-hover:text-[#003366]" />
     </a>
+  );
+}
+
+function StarryLakeBackground() {
+  useEffect(() => {
+    const canvas = document.getElementById('starry-lake-canvas') as HTMLCanvasElement;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationId: number;
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    interface Star {
+      xRatio: number;
+      yRatio: number;
+      size: number;
+      alpha: number;
+      twinkleSpeed: number;
+      color: string;
+    }
+
+    const stars: Star[] = [];
+    const starColors = ['#ffffff', '#e0f2fe', '#fef08a', '#fae8ff', '#bae6fd'];
+    for (let i = 0; i < 120; i++) {
+      stars.push({
+        xRatio: Math.random(),
+        yRatio: Math.random() * 0.75, // Sky portion of the container
+        size: Math.random() * 1.5 + 0.4,
+        alpha: Math.random(),
+        twinkleSpeed: (Math.random() * 0.01 + 0.003) * (Math.random() > 0.5 ? 1 : -1),
+        color: starColors[Math.floor(Math.random() * starColors.length)]
+      });
+    }
+
+    interface Meteor {
+      x: number;
+      y: number;
+      length: number;
+      speed: number;
+      angle: number;
+      alpha: number;
+      active: boolean;
+    }
+
+    const meteor: Meteor = {
+      x: 0,
+      y: 0,
+      length: 0,
+      speed: 0,
+      angle: 0,
+      alpha: 0,
+      active: false
+    };
+
+    const triggerMeteor = () => {
+      meteor.active = true;
+      meteor.x = Math.random() * (width * 0.7);
+      meteor.y = Math.random() * (height * 0.35);
+      meteor.length = Math.random() * 60 + 40;
+      meteor.speed = Math.random() * 4 + 3;
+      meteor.angle = Math.PI / 6 + Math.random() * (Math.PI / 12);
+      meteor.alpha = 1;
+    };
+
+    let tick = 0;
+    const render = () => {
+      tick++;
+      ctx.clearRect(0, 0, width, height);
+
+      const lakeY = height * 0.68; // Lake starts at 68% viewport height
+
+      // 1. Sky Gradient (Deep Indigo & Twilight Purple, anime style)
+      const skyGrad = ctx.createLinearGradient(0, 0, 0, lakeY);
+      skyGrad.addColorStop(0, '#020208');
+      skyGrad.addColorStop(0.35, '#0a0921');
+      skyGrad.addColorStop(0.7, '#1b143c');
+      skyGrad.addColorStop(0.9, '#301b58');
+      skyGrad.addColorStop(1, '#4a285d');
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, width, lakeY);
+
+      // 2. Stars
+      stars.forEach(s => {
+        s.alpha += s.twinkleSpeed;
+        if (s.alpha > 1 || s.alpha < 0.15) {
+          s.twinkleSpeed = -s.twinkleSpeed;
+        }
+        ctx.fillStyle = s.color;
+        ctx.globalAlpha = Math.max(0.1, s.alpha);
+        ctx.beginPath();
+        ctx.arc(s.xRatio * width, s.yRatio * lakeY, s.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+
+      // 3. Meteor (Shooting Star)
+      if (meteor.active) {
+        ctx.save();
+        ctx.strokeStyle = `rgba(186, 230, 253, ${meteor.alpha})`;
+        ctx.lineWidth = 1.25;
+        ctx.lineCap = 'round';
+        ctx.shadowColor = '#00e6b8';
+        ctx.shadowBlur = 6;
+        ctx.beginPath();
+        const endX = meteor.x - Math.cos(meteor.angle) * meteor.length;
+        const endY = meteor.y - Math.sin(meteor.angle) * meteor.length;
+        ctx.moveTo(meteor.x, meteor.y);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+        ctx.restore();
+
+        meteor.x += Math.cos(meteor.angle) * meteor.speed;
+        meteor.y += Math.sin(meteor.angle) * meteor.speed;
+        
+        if (meteor.y > lakeY - 40) {
+          meteor.alpha -= 0.04;
+        }
+        if (meteor.alpha <= 0 || meteor.x > width || meteor.y > lakeY) {
+          meteor.active = false;
+        }
+      } else if (Math.random() < 0.002) {
+        triggerMeteor();
+      }
+
+      // 4. Behind Mountain Silhouette
+      ctx.fillStyle = '#0a061a';
+      ctx.beginPath();
+      ctx.moveTo(0, lakeY);
+      ctx.bezierCurveTo(width * 0.25, lakeY - 35, width * 0.4, lakeY - 10, width * 0.55, lakeY - 22);
+      ctx.bezierCurveTo(width * 0.7, lakeY - 38, width * 0.85, lakeY - 15, width, lakeY);
+      ctx.lineTo(width, lakeY + 10);
+      ctx.lineTo(0, lakeY + 10);
+      ctx.closePath();
+      ctx.fill();
+
+      // Front Mountain Silhouette (Warm tone silhouette)
+      ctx.fillStyle = '#140c26';
+      ctx.beginPath();
+      ctx.moveTo(0, lakeY);
+      ctx.bezierCurveTo(width * 0.15, lakeY - 20, width * 0.35, lakeY - 5, width * 0.5, lakeY - 12);
+      ctx.bezierCurveTo(width * 0.65, lakeY - 25, width * 0.8, lakeY - 8, width, lakeY);
+      ctx.lineTo(width, lakeY + 10);
+      ctx.lineTo(0, lakeY + 10);
+      ctx.closePath();
+      ctx.fill();
+
+      // 5. Lake Surface Gradient
+      const lakeGrad = ctx.createLinearGradient(0, lakeY, 0, height);
+      lakeGrad.addColorStop(0, '#0d0822');
+      lakeGrad.addColorStop(0.5, '#050311');
+      lakeGrad.addColorStop(1, '#010005');
+      ctx.fillStyle = lakeGrad;
+      ctx.fillRect(0, lakeY, width, height - lakeY);
+
+      // 6. Star Mirror Reflections (gently undulating with horizontal ripples)
+      ctx.save();
+      stars.forEach((s, idx) => {
+        if (idx % 2 === 0 && s.alpha > 0.25) {
+          const starRealX = s.xRatio * width;
+          const starRealY = s.yRatio * lakeY;
+          const reflectY = lakeY + (lakeY - starRealY) * 0.38;
+          if (reflectY < height) {
+            const waveOffset = Math.sin(tick * 0.015 + idx) * 1.5;
+            ctx.fillStyle = '#93c5fd';
+            ctx.globalAlpha = s.alpha * 0.2;
+            ctx.beginPath();
+            ctx.ellipse(starRealX + waveOffset, reflectY, s.size * 2.2, s.size * 0.5, 0, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      });
+      ctx.restore();
+
+      // Ambient horizontal ripple streaks
+      ctx.save();
+      ctx.strokeStyle = '#8b5cf6';
+      ctx.globalAlpha = 0.05;
+      for (let i = 0; i < 12; i++) {
+        const yCoord = lakeY + (height - lakeY) * ((i + 1) / 13);
+        const waveLen = Math.sin(tick * 0.006 + i) * 50 + (width * 0.28);
+        const centerPos = width / 2 + Math.cos(tick * 0.003 + i) * 80;
+        ctx.lineWidth = 0.75;
+        ctx.beginPath();
+        ctx.moveTo(centerPos - waveLen, yCoord);
+        ctx.lineTo(centerPos + waveLen, yCoord);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      animationId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationId);
+    };
+  }, []);
+
+  return (
+    <canvas
+      id="starry-lake-canvas"
+      className="fixed inset-0 w-full h-full -z-20 pointer-events-none"
+    />
   );
 }

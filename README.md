@@ -1,7 +1,20 @@
-# Yihang Xing's Personal Homepage
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-A personal homepage built with React, Vite and Tailwind CSS.
+# Run and deploy your AI Studio app
 
-## Deployment
+This contains everything you need to run your app locally.
 
-Auto-deployed to GitHub Pages via GitHub Actions.
+View your app in AI Studio: https://ai.studio/apps/c7a444b2-13b0-490a-8844-607305d4475a
+
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
