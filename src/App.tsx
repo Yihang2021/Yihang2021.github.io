@@ -165,7 +165,7 @@ export default function App() {
                 <p className="text-zinc-600 leading-relaxed mb-4">
                   {t(
                     'I am an undergraduate student at the School of the Gifted Young, University of Science and Technology of China, majoring in Data Science and Big Data Technology. I am currently learning and exploring the field of artificial intelligence, hoping to contribute to the advancement of human society. I have ample passion and capability for project work and teamwork, which allows me to excel in collaborative research projects. As a third-year undergraduate, I have not yet determined a specific future direction, as I believe that only through sufficient trial and experience can one\'s potential be fully unleashed. Therefore, I am enthusiastic about any creative and interesting work and am willing to constantly try and learn in cutting-edge technology fields.',
-                    '我是中国科学技术大学少年班学院数据科学与大数据技术专业的本科生，目前正在人工智能领域学习与探索，希望能对人类科学技术的发展作出自己的贡献。我对于项目工作与团队协作有充足的热情与能力，这让我能够很好地胜任合作研究项目。作为一名本科三年级的学生，我并没有确定未来明确的发展方向，我认为只有充分的尝试和体验才可以最大激发一个人的潜能。因此，我热衷于任何创造性的、有趣的工作，并愿意在前沿科技领域不断尝试与学习。'
+                    '我是中国科学技术大学少年班学院数据科学与大数据技术专业的本科生，目前正在人工智能与数据科学领域学习与探索，希望能对科技与社会的发展作出自己的贡献。我对于项目工作与团队协作有充足的热情与能力，这让我能够很好地胜任合作研究项目。作为一名本科三年级的学生，我并没有确定未来明确的发展方向，我认为只有充分的尝试和体验才可以最大激发一个人的潜能。因此，我热衷于任何创造性的、有趣的工作，并愿意在前沿科技领域不断尝试与学习。'
                   )}
                 </p>
                 <p className="text-zinc-600 leading-relaxed">
