@@ -1,674 +1,199 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { useState, useEffect, ReactNode } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Mail, 
-  Github, 
-  GraduationCap, 
-  Award, 
-  Briefcase, 
-  FlaskConical, 
-  Lightbulb, 
-  BookOpen, 
-  ExternalLink, 
-  Globe,
+import { useState } from 'react';
+import { motion } from 'motion/react';
+import {
+  ArrowUpRight,
+  BookOpen,
+  BriefcaseBusiness,
+  Check,
   ChevronRight,
+  CircleDot,
+  Code2,
+  Download,
+  ExternalLink,
+  FlaskConical,
+  Github,
+  GraduationCap,
+  Languages,
+  Lightbulb,
+  Mail,
   MapPin,
-  Calendar
+  Menu,
+  Quote,
+  Sparkles,
+  X,
 } from 'lucide-react';
 
-type Language = 'en' | 'zh';
+type Language = 'zh' | 'en';
 
-export default function App() {
-  const [lang, setLang] = useState<Language>('en');
-  const [visitorCount, setVisitorCount] = useState<number>(327);
+const copy = {
+  zh: {
+    nav: ['关于我', '研究方向', '项目经历', '教育经历'],
+    eyebrow: 'AI × Education × Human Potential',
+    title: '把好奇心，做成可以被使用的东西。',
+    intro: '我是邢祎航，一名关注人工智能教育、智能体系统与学习科学的研究者和产品实践者。',
+    location: '中国科学技术大学 · 合肥 / 北京',
+    cta: '看看我在做什么',
+    contact: '与我交流',
+    aboutLabel: '01 / 关于我',
+    aboutTitle: '在研究与真实世界之间搭一座桥。',
+    aboutBody: '我相信好的技术应该让更多人理解复杂问题、获得更好的学习体验，并拥有把想法变成行动的能力。现在，我正在把数据科学训练、教育研究和产品思维放在同一张桌子上。',
+    quote: '弱小和无知不是生存的障碍，傲慢才是。',
+    interests: ['AI for Education', 'LLM Agents', 'Learning Sciences', 'Product Building'],
+    researchLabel: '02 / 研究方向',
+    researchTitle: '我正在追问的几个问题',
+    researchCards: [
+      ['01', '智能体如何更可靠？', '研究工具增强大模型在复杂任务中的纠错、反思与预防机制，让 AI 在关键场景中更值得信任。', 'Error Prevention · Tool-augmented LLM'],
+      ['02', 'AI 如何真正帮助学习？', '关注生成式 AI 如何支持教师、学生和学校，把“会回答”推进到“会教、会学、会成长”。', 'AI for Education · Learning Design'],
+      ['03', '研究如何走向产品？', '把研究洞见转成可试用、可评估、可持续迭代的教育产品，连接学校、教师和学习者。', 'Research-to-Product · EdTech'],
+    ],
+    workLabel: '03 / 项目经历',
+    workTitle: '正在发生的事',
+    workItems: [
+      ['新荷学者研究项目', '中国科学技术大学少年班学院 · 2025 — 2026', '工具增强大模型智能体纠错的预防机制', '进行中'],
+      ['大学生研究计划', '中国科学技术大学 · 2025 — 2026', '围绕 LLM Agent 可靠性展开实验与分析', '进行中'],
+      ['吴大猷学者暑期研究', '台湾清华大学 · 2025', '生态统计模型的仿真比较研究', '已完成'],
+    ],
+    educationLabel: '04 / 教育经历',
+    educationTitle: '从数据科学出发，走向教育科技。',
+    timeline: [
+      ['2027 —', '北京大学教育学院', '科学与技术教育 · 专业硕士（拟）'],
+      ['2023 — 2027', '中国科学技术大学', '数据科学与大数据技术 · 本科'],
+      ['Now', '个人实验室', '阅读、写作、做实验，也做一点真正有人使用的东西。'],
+    ],
+    strengths: ['数据科学与统计建模', 'Python / TypeScript / React', '研究设计与快速原型', '中文 / English'],
+    contactTitle: '如果你也在认真做一件事，欢迎来找我。',
+    contactBody: '研究合作、教育产品、AI 应用，或者一场有意思的讨论，都可以从一封邮件开始。',
+    footer: '持续学习，持续建造。',
+    cv: '下载简历',
+  },
+  en: {
+    nav: ['About', 'Research', 'Projects', 'Education'],
+    eyebrow: 'AI × Education × Human Potential',
+    title: 'Turning curiosity into things people can use.',
+    intro: 'I am Yihang Xing — a researcher and builder exploring AI for education, reliable agentic systems, and learning sciences.',
+    location: 'USTC · Hefei / Beijing, China',
+    cta: 'Explore my work',
+    contact: 'Get in touch',
+    aboutLabel: '01 / About',
+    aboutTitle: 'Building a bridge between research and the real world.',
+    aboutBody: 'I believe technology should help more people understand complex ideas, learn better, and turn intention into action. I am bringing data science, education research, and product thinking to the same table.',
+    quote: 'Weakness and ignorance are not obstacles to survival. Arrogance is.',
+    interests: ['AI for Education', 'LLM Agents', 'Learning Sciences', 'Product Building'],
+    researchLabel: '02 / Research',
+    researchTitle: 'Questions I am working on',
+    researchCards: [
+      ['01', 'How can agents become more reliable?', 'Studying prevention, reflection, and recovery mechanisms for tool-augmented LLMs in complex tasks.', 'Error Prevention · Tool-augmented LLM'],
+      ['02', 'How can AI genuinely support learning?', 'Exploring how generative AI can support teachers, students, and schools beyond simply producing answers.', 'AI for Education · Learning Design'],
+      ['03', 'How does research become a product?', 'Turning research insights into testable, measurable, and useful tools for schools and learners.', 'Research-to-Product · EdTech'],
+    ],
+    workLabel: '03 / Projects',
+    workTitle: 'What is happening now',
+    workItems: [
+      ['New Lotus Scholar Research Program', 'USTC School of the Gifted Young · 2025 — 2026', 'Error prevention in tool-augmented LLM agents', 'Ongoing'],
+      ['Undergraduate Research Program', 'University of Science and Technology of China · 2025 — 2026', 'Experiments and analysis on reliable LLM agents', 'Ongoing'],
+      ['Ta-You Wu Scholars Summer Research', 'National Tsing Hua University · 2025', 'Simulation and comparison of ecological statistical models', 'Completed'],
+    ],
+    educationLabel: '04 / Education',
+    educationTitle: 'From data science towards education technology.',
+    timeline: [
+      ['2027 —', 'Peking University Graduate School of Education', 'M.Ed. in Science & Technology Education (incoming)'],
+      ['2023 — 2027', 'University of Science and Technology of China', 'B.S. in Data Science and Big Data Technology'],
+      ['Now', 'Personal Lab', 'Reading, writing, experimenting — and building things people can actually use.'],
+    ],
+    strengths: ['Data science & statistical modeling', 'Python / TypeScript / React', 'Research design & rapid prototyping', '中文 / English'],
+    contactTitle: 'If you are building something seriously, say hello.',
+    contactBody: 'Research, education products, AI applications, or a thoughtful conversation — it can start with an email.',
+    footer: 'Keep learning. Keep building.',
+    cv: 'Download CV',
+  },
+} as const;
 
-  const t = (en: string, zh: string) => (lang === 'en' ? en : zh);
+function App() {
+  const [lang, setLang] = useState<Language>('zh');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const t = copy[lang];
 
-  useEffect(() => {
-    // Add Busuanzi script dynamically
-    const script = document.createElement('script');
-    script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    const targetNode = document.getElementById('busuanzi_value_site_pv');
-
-    const handleCountUpdate = () => {
-      const node = document.getElementById('busuanzi_value_site_pv');
-      if (node) {
-        const rawValue = node.textContent || '';
-        const num = parseInt(rawValue.replace(/\D/g, ''), 10);
-        if (!isNaN(num)) {
-          setVisitorCount(327 + num);
-        }
-      }
-    };
-
-    const observer = new MutationObserver(handleCountUpdate);
-    if (targetNode) {
-      observer.observe(targetNode, { childList: true, characterData: true, subtree: true });
-    }
-
-    const interval = setInterval(handleCountUpdate, 500);
-
-    return () => {
-      document.body.removeChild(script);
-      observer.disconnect();
-      clearInterval(interval);
-    };
-  }, []);
+  const navIds = ['about', 'research', 'projects', 'education'];
+  const goTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
+  };
+  const copyEmail = async () => {
+    try { await navigator.clipboard?.writeText('Oliveira@mail.ustc.edu.cn'); } catch { /* clipboard permissions can be unavailable */ }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1800);
+  };
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex flex-col items-center py-10 px-4 md:px-8">
-      <StarryLakeBackground />
-      
-      {/* Navigation / Language Switch */}
-      <nav className="fixed top-6 right-6 z-50">
-        <div className="flex gap-2 bg-white/80 backdrop-blur-md border border-zinc-200 rounded-full p-1 shadow-md">
-          <button 
-            onClick={() => setLang('en')}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === 'en' ? 'bg-[#003366] text-white shadow-md' : 'text-zinc-600 hover:text-zinc-900'}`}
-          >
-            English
+    <div className="site-shell">
+      <div className="ambient ambient-one" />
+      <div className="ambient ambient-two" />
+      <header className="topbar">
+        <a className="brand" href="#top" onClick={() => goTo('top')} aria-label="Yihang Xing home">
+          <span className="brand-mark">YX</span>
+          <span className="brand-name">Yihang Xing</span>
+        </a>
+        <nav className={`nav-links ${menuOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
+          {t.nav.map((item, index) => <button key={item} onClick={() => goTo(navIds[index])}>{item}</button>)}
+          <a href="mailto:Oliveira@mail.ustc.edu.cn" className="nav-contact">{t.contact} <ArrowUpRight size={15} /></a>
+        </nav>
+        <div className="topbar-actions">
+          <button className="language-button" onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')} aria-label="Switch language">
+            <Languages size={16} /> {lang === 'zh' ? 'EN' : '中'}
           </button>
-          <button 
-            onClick={() => setLang('zh')}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${lang === 'zh' ? 'bg-[#003366] text-white shadow-md' : 'text-zinc-600 hover:text-zinc-900'}`}
-          >
-            中文
-          </button>
+          <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
         </div>
-      </nav>
+      </header>
 
-      <main className="max-w-5xl w-full mx-auto px-6 md:px-14 py-10 md:py-16 bg-[#fdfbf7]/94 backdrop-blur-md rounded-2xl border border-white/40 shadow-2xl relative z-10 my-8">
-        {/* Header Section */}
-        <header className="mb-20">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-10">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="relative"
-            >
-              <div className="w-40 h-40 rounded-xl overflow-hidden border-4 border-[#003366]/10 shadow-lg hover:border-[#003366] transition-colors duration-500 bg-white">
-                <img 
-                  src="./Avat.jpg" 
-                  alt="Yihang Xing" 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-[#003366] rounded-xl flex items-center justify-center text-white shadow-md">
-                <GraduationCap size={24} />
-              </div>
+      <main id="top">
+        <section className="hero section-wrap">
+          <div className="hero-copy">
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="eyebrow"><span className="eyebrow-dot" /> {t.eyebrow}</motion.div>
+            <motion.h1 initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .08 }}>{t.title}</motion.h1>
+            <motion.p className="hero-intro" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .16 }}>{t.intro}</motion.p>
+            <motion.div className="hero-meta" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .24 }}><MapPin size={16} /> {t.location}</motion.div>
+            <motion.div className="hero-actions" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .3 }}>
+              <button className="button button-primary" onClick={() => goTo('research')}>{t.cta} <ArrowUpRight size={17} /></button>
+              <button className="button button-ghost" onClick={copyEmail}>{copied ? <Check size={17} /> : <Mail size={17} />} {copied ? (lang === 'zh' ? '已复制邮箱' : 'Email copied') : t.contact}</button>
             </motion.div>
-
-            <div className="flex-1 text-center md:text-left">
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-5xl md:text-6xl font-display font-medium text-zinc-900 mb-4 tracking-tight"
-              >
-                {t('Yihang Xing', '邢祎航')}
-              </motion.h1>
-              
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="space-y-2 mb-6"
-              >
-                <p className="text-xl text-[#003366] font-medium italic">
-                  {t('School of the Gifted Young', '少年班学院')}
-                </p>
-                <p className="text-lg text-zinc-700 flex items-center justify-center md:justify-start gap-2">
-                  <MapPin size={18} className="text-[#003366]/60" />
-                  {t('University of Science and Technology of China', '中国科学技术大学')}
-                </p>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="flex flex-wrap justify-center md:justify-start gap-4"
-              >
-                <a href="mailto:Oliveira@mail.ustc.edu.cn" className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-amber-50/50 rounded-lg text-zinc-700 transition-colors border border-zinc-200 hover:border-amber-300 shadow-sm">
-                  <Mail size={16} className="text-[#003366]" />
-                  <span className="text-sm font-medium">Oliveira@mail.ustc.edu.cn</span>
-                </a>
-                <a href="mailto:oliveira@ustc.edu" className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-amber-50/50 rounded-lg text-zinc-700 transition-colors border border-zinc-200 hover:border-amber-300 shadow-sm">
-                  <Mail size={16} className="text-[#003366]" />
-                  <span className="text-sm font-medium">oliveira@ustc.edu</span>
-                </a>
-                <a href="https://github.com/Yihang2021" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-[#003366] hover:bg-[#002244] text-white rounded-lg transition-colors shadow-sm">
-                  <Github size={16} />
-                  <span className="text-sm font-medium">GitHub</span>
-                </a>
-              </motion.div>
-            </div>
           </div>
-        </header>
+          <motion.div className="hero-visual" initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .6 }}>
+            <div className="orbit orbit-a" /><div className="orbit orbit-b" />
+            <div className="portrait-card"><img src="./Avat.jpg" alt="Yihang Xing" /><div className="portrait-caption"><span>AI × education</span><span className="live-dot">●</span></div></div>
+            <div className="floating-note note-top"><Sparkles size={14} /><span>build with care</span></div>
+            <div className="floating-note note-bottom"><CircleDot size={14} /><span>learning in public</span></div>
+          </motion.div>
+        </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Left Column: About & Interests */}
-          <div className="lg:col-span-2 space-y-16">
-            {/* About Me */}
-            <section>
-              <SectionHeader icon={<Globe size={22} />} title={t('About Me', '关于我')} />
-              <div className="prose prose-zinc max-w-none">
-                <blockquote className="border-l-4 border-[#003366] pl-4 py-1 italic text-zinc-700 bg-amber-50/40 rounded-r-lg mb-6">
-                  {t('Weakness and ignorance are not obstacles to survival, arrogance is.', '弱小和无知不是生存的障碍。傲慢才是。')}
-                </blockquote>
-                <p className="text-zinc-600 leading-relaxed mb-4">
-                  {t(
-                    'I am an undergraduate student at the School of the Gifted Young, University of Science and Technology of China, majoring in Data Science and Big Data Technology. I am currently learning and exploring the field of artificial intelligence, hoping to contribute to the advancement of human society. I have ample passion and capability for project work and teamwork, which allows me to excel in collaborative research projects. As a third-year undergraduate, I have not yet determined a specific future direction, as I believe that only through sufficient trial and experience can one\'s potential be fully unleashed. Therefore, I am enthusiastic about any creative and interesting work and am willing to constantly try and learn in cutting-edge technology fields.',
-                    '我是中国科学技术大学少年班学院数据科学与大数据技术专业的本科生，目前正在人工智能与数据科学领域学习与探索，希望能对科技与社会的发展作出自己的贡献。我对于项目工作与团队协作有充足的热情与能力，这让我能够很好地胜任合作研究项目。作为一名本科三年级的学生，我并没有确定未来明确的发展方向，我认为只有充分的尝试和体验才可以最大激发一个人的潜能。因此，我热衷于任何创造性的、有趣的工作，并愿意在前沿科技领域不断尝试与学习。'
-                  )}
-                </p>
-                <p className="text-zinc-600 leading-relaxed">
-                  {t(
-                    'At the same time, I am also passionate about life, with a love for sports, nature exploration, and intercultural communication. In high school, as a founding member of the school volleyball team, I participated twice in the city volleyball league. In university, as a member of the School of the Gifted Young\'s soccer and volleyball teams, I won the \'Fledgling Eagle Cup\' championship in soccer and third place in the \'New Star Cup\' for volleyball.',
-                    '同时，我对生活也充满热情，热爱运动、自然探险以及跨文化交流。我曾在高中时作为校排球队的创始成员两度参与市排球联赛，我也在大学时作为少年班学院足球队、排球队的一员分别获得足球”雏鹰杯“冠军和排球”新星杯“季军。'
-                  )}
-                </p>
-              </div>
-            </section>
+        <section className="marquee-strip"><div className="marquee-track"><span>RESEARCH</span><span>EDUCATION</span><span>AI AGENTS</span><span>PRODUCT</span><span>RESEARCH</span><span>EDUCATION</span><span>AI AGENTS</span><span>PRODUCT</span></div></section>
 
-            {/* Research Projects */}
-            <section>
-              <SectionHeader icon={<FlaskConical size={22} />} title={t('Research Projects', '研究项目')} />
-              <div className="space-y-6">
-                <ProjectCard 
-                  title={t('"New Lotus Scholar" Research Program, School of the Gifted Young, USTC', '“新荷学者”研究项目, 中国科学技术大学少年班学院')}
-                  duration={t('Nov. 2025 - 2026 Spring', '2025年11月 - 2026年春季')}
-                  topic={t('Error Prevention in Tool-Augmented LLM.', '工具增强大模型智能体纠错的预防机制。')}
-                  status="ongoing"
-                  lang={lang}
-                />
-                <ProjectCard 
-                  title={t('Undergraduate Research Program, USTC', '大学生研究计划, 中国科学技术大学')}
-                  duration={t('Dec. 2025 - 2026 Spring', '2025年12月 - 2026年春季')}
-                  topic={t('Error Prevention in Tool-Augmented LLM.', '工具增强大模型智能体纠错的预防机制。')}
-                  status="ongoing"
-                  lang={lang}
-                />
-                <ProjectCard 
-                  title={t('"Ta-You Wu Scholars" Summer Research Program, National Tsinghua University', '“吴大猷学者”暑期研究项目, 台湾清华大学')}
-                  duration={t('July 2025 - Aug. 2025', '2025年7月 - 2025年8月')}
-                  topic={t('A Simulation and Comparative Study of Ecological Statistical Models.', '生态统计模型的仿真比较研究。')}
-                  advisor={t('Prof. Wen-Han Hwang, Director of the Institute of Statistics and Data Science', '黄文瀚教授，统计与数据科学研究所所长')}
-                  status="completed"
-                  lang={lang}
-                />
-              </div>
-            </section>
+        <section id="about" className="section-wrap content-section about-section">
+          <div className="section-kicker">{t.aboutLabel}</div>
+          <div className="about-grid"><div><h2>{t.aboutTitle}</h2><p className="lead-copy">{t.aboutBody}</p><div className="quote-card"><Quote size={21} /><p>{t.quote}</p></div></div><div className="about-aside"><div className="aside-label">FOCUS AREAS</div><div className="pill-list">{t.interests.map((item) => <span key={item}>{item}</span>)}</div><div className="mini-facts"><div><strong>01</strong><span>{lang === 'zh' ? '研究主线' : 'research thread'}</span></div><div><strong>02</strong><span>{lang === 'zh' ? '正在构建' : 'things building'}</span></div><div><strong>∞</strong><span>{lang === 'zh' ? '持续好奇' : 'curiosity'}</span></div></div></div></div>
+        </section>
 
-            {/* Publications */}
-            <section>
-              <SectionHeader icon={<BookOpen size={22} />} title={t('Publications', '发表')} />
-              <div className="p-6 bg-amber-50/20 border border-zinc-200 rounded-xl">
-                <p className="text-zinc-900 font-semibold mb-2">
-                  {t('I have no publications yet, but I\'m currently working on a project in LLM Agent.', '我目前尚无已发表论文,但我正致力于一项AI智能体相关的研究。')}
-                </p>
-                <p className="text-zinc-600 text-sm mb-4">
-                  <strong>{t('Yihang Xing', '邢祎航')}</strong>, Co-Authors
-                </p>
-                <p className="text-[#003366] text-sm italic mb-4">
-                  {t('NeurIPS, 2026. ← as my goal', 'NeurIPS, 2026. ← 目标')}
-                </p>
-                <div className="flex gap-4 text-xs font-bold uppercase tracking-wider text-[#003366]">
-                  <span className="opacity-50 cursor-not-allowed">[PDF]</span>
-                  <span className="opacity-50 cursor-not-allowed">[Code]</span>
-                  <span className="opacity-50 cursor-not-allowed">[BibTeX]</span>
-                </div>
-              </div>
-            </section>
-          </div>
+        <section id="research" className="section-wrap content-section research-section">
+          <div className="section-heading"><div><div className="section-kicker">{t.researchLabel}</div><h2>{t.researchTitle}</h2></div><Lightbulb className="heading-icon" size={42} strokeWidth={1.4} /></div>
+          <div className="research-grid">{t.researchCards.map(([number, title, body, tag]) => <motion.article whileHover={{ y: -6 }} transition={{ type: 'spring', stiffness: 300 }} className="research-card" key={number}><div className="card-number">{number}</div><h3>{title}</h3><p>{body}</p><div className="card-tag">{tag}</div><ChevronRight className="card-arrow" size={20} /></motion.article>)}</div>
+        </section>
 
-          {/* Right Column: Education, Honors, Experience */}
-          <div className="space-y-16">
-            {/* Education */}
-            <section>
-              <SectionHeader icon={<GraduationCap size={22} />} title={t('Education', '教育经历')} />
-              <div className="space-y-6">
-                <TimelineItem 
-                  title={t('B.S. in Data Science', '本科, 数据科学与大数据技术')}
-                  subtitle={t('USTC, School of the Gifted Young', '中国科学技术大学少年班学院')}
-                  date="2023 - Present"
-                />
-                <TimelineItem 
-                  title={t('High School Diploma', '高中，江苏省淮阴中学')}
-                  subtitle={t('Huaiyin High School, Jiangsu Province', '江苏省')}
-                  date="2018 - 2023"
-                />
-              </div>
-            </section>
+        <section id="projects" className="section-wrap content-section projects-section">
+          <div className="section-heading"><div><div className="section-kicker">{t.workLabel}</div><h2>{t.workTitle}</h2></div><FlaskConical className="heading-icon" size={42} strokeWidth={1.4} /></div>
+          <div className="project-list">{t.workItems.map(([title, meta, detail, status], index) => <article className="project-row" key={title}><div className="project-index">0{index + 1}</div><div className="project-main"><h3>{title}</h3><div className="project-meta">{meta}</div><p>{detail}</p></div><span className={`status status-${status === 'Ongoing' || status === '进行中' ? 'active' : 'done'}`}>{status}</span><ArrowUpRight className="project-arrow" size={20} /></article>)}</div>
+        </section>
 
-            {/* Honors */}
-            <section>
-              <SectionHeader icon={<Award size={22} />} title={t('Honors', '荣誉')} />
-              <div className="space-y-4">
-                <HonorItem 
-                  title={t('Outstanding Freshman Scholarship (Bronze)', '优秀新生奖学金铜奖')}
-                  org="USTC"
-                  date="Fall 2023"
-                />
-                <HonorItem 
-                  title={t('Rose Fund Public Affairs Scholarship', '蔷薇奖学金(奉公德育)')}
-                  org="SGY, USTC"
-                  date="Spring 2025"
-                />
-                <HonorItem 
-                  title={t('"Ta-You Wu Scholars" Research Scholarship', '"吴大猷学者"研究实习奖学金')}
-                  org="NTHU"
-                  date="Summer 2025"
-                />
-                <HonorItem 
-                  title={t('Outstanding Peer Academic Counselor Prize', '"朋辈助学"优秀导师奖金')}
-                  org="School of Physics, USTC"
-                  date="Fall 2025"
-                />
-                <HonorItem 
-                  title={t('Xiangyang Scholarship by Alumni', '九四级少年班零零班向阳奖学金')}
-                  org="SGY, USTC"
-                  date="Fall 2025"
-                />
-              </div>
-            </section>
+        <section id="education" className="section-wrap content-section education-section">
+          <div className="section-heading"><div><div className="section-kicker">{t.educationLabel}</div><h2>{t.educationTitle}</h2></div><GraduationCap className="heading-icon" size={42} strokeWidth={1.4} /></div>
+          <div className="education-grid"><div className="timeline">{t.timeline.map(([date, school, detail]) => <div className="timeline-item" key={date}><div className="timeline-dot" /><div className="timeline-date">{date}</div><div><h3>{school}</h3><p>{detail}</p></div></div>)}</div><div className="skills-card"><div className="aside-label">TOOLKIT</div>{t.strengths.map((skill) => <div className="skill-row" key={skill}><span>{skill}</span><ChevronRight size={16} /></div>)}<div className="skill-icons"><Code2 size={20} /><BookOpen size={20} /><BriefcaseBusiness size={20} /></div></div></div>
+        </section>
 
-            {/* Experience */}
-            <section>
-              <SectionHeader icon={<Briefcase size={22} />} title={t('Experience', '任职经历')} />
-              <div className="space-y-4">
-                <ExperienceItem 
-                  role={t('Teaching Assistant', '助教')}
-                  desc={t('Introduction to Database System', '数据库系统概论')}
-                  date="Spring 2026"
-                />
-                <ExperienceItem 
-                  role={t('Deputy President', '副团长')}
-                  desc={t('Student Wargame Club, USTC', '校学生战术社团')}
-                  date="2025 - 2026"
-                />
-                <ExperienceItem 
-                  role={t('Teaching Assistant', '助教')}
-                  desc={t('Computer Programming L', '计算机程序设计L')}
-                  date="Fall 2025"
-                />
-                <ExperienceItem 
-                  role={t('Research Assistant', '本科生研究助理')}
-                  desc={t('NTHU, Institute of Statistics', '台湾清华大学统计与数据科学研究所')}
-                  date="Summer 2025"
-                />
-                <ExperienceItem 
-                  role={t('Peer Academic Counselor', '朋辈助学导师')}
-                  desc={t('Mechanics & Electromagnetism', '力学课程与电磁学课程')}
-                  date="2024 - 2025"
-                />
-              </div>
-            </section>
-
-            {/* Research Interests */}
-            <section>
-              <SectionHeader icon={<Lightbulb size={22} />} title={t('Research Interests', '研究兴趣')} />
-              <div className="flex flex-wrap gap-2">
-                {[
-                  t('LLM Agents', 'AI智能体'),
-                  t('Big Data in politics & international relations', '大数据在政治与国际关系中的运用'),
-                  t('Data Science', '数据科学'),
-                  t('Anything Creative & Interesting', '任何具有创造性与趣味性的事物')
-                ].map((interest, i) => (
-                  <span key={i} className="px-3 py-1 bg-amber-50 text-amber-900 text-sm font-medium rounded-full border border-amber-200/80">
-                    {interest}
-                  </span>
-                ))}
-              </div>
-            </section>
-
-            {/* Links */}
-            <section>
-              <SectionHeader icon={<ExternalLink size={22} />} title={t('Links', '链接')} />
-              <div className="space-y-3">
-                <LinkItem href="https://scholar.google.com/citations?user=j40Kcu4AAAAJ" label="Google Scholar" />
-                <LinkItem href="https://github.com/Yihang2021" label="GitHub" />
-              </div>
-            </section>
-          </div>
-        </div>
-        <footer className="border-t border-zinc-200/60 mt-16 pt-8 text-center">
-          <p className="text-zinc-700 font-medium text-base mb-2 font-display">
-            {t('Yihang Xing 2025', '邢祎航 2025')}
-          </p>
-          <div className="mt-2 inline-flex items-center gap-2 px-4 py-1.5 bg-white/60 border border-zinc-200/80 rounded-full text-xs text-zinc-500 font-serif italic shadow-sm">
-            <span>{t('Total Visitors', '总访问量')}</span>
-            <span className="text-zinc-900 font-bold not-italic font-sans">{visitorCount}</span>
-          </div>
-        </footer>
+        <section className="contact-section section-wrap"><div className="contact-inner"><div className="section-kicker">05 / {lang === 'zh' ? '保持联系' : 'Keep in touch'}</div><h2>{t.contactTitle}</h2><p>{t.contactBody}</p><div className="contact-actions"><a className="button button-light" href="mailto:Oliveira@mail.ustc.edu.cn"><Mail size={17} /> Oliveira@mail.ustc.edu.cn <ArrowUpRight size={16} /></a><a className="social-link" href="https://github.com/Yihang2021" target="_blank" rel="noreferrer"><Github size={19} /> GitHub</a></div></div></section>
       </main>
 
-      {/* Hidden Busuanzi element to receive dynamic values */}
-      <span id="busuanzi_value_site_pv" style={{ display: 'none' }}></span>
+      <footer className="footer section-wrap"><span>© {new Date().getFullYear()} Yihang Xing</span><span>{t.footer}</span><a href="#top" onClick={() => goTo('top')}>Back to top ↑</a></footer>
     </div>
   );
 }
 
-function SectionHeader({ icon, title }: { icon: ReactNode; title: string }) {
-  return (
-    <div className="flex items-center gap-3 mb-8">
-      <div className="p-2 bg-[#003366] text-white rounded-lg shadow-sm">
-        {icon}
-      </div>
-      <h2 className="text-2xl font-display font-medium text-zinc-900 tracking-tight">
-        {title}
-      </h2>
-      <div className="flex-1 h-px bg-zinc-200 ml-4"></div>
-    </div>
-  );
-}
-
-function ProjectCard({ title, duration, topic, advisor, status, lang }: { 
-  title: string; 
-  duration: string; 
-  topic: string; 
-  advisor?: string; 
-  status: 'ongoing' | 'completed';
-  lang: Language;
-}) {
-  return (
-    <div className="group p-6 bg-white border border-zinc-200 rounded-xl hover:border-amber-300 hover:shadow-lg hover:shadow-subtle transition-all duration-300">
-      <div className="flex justify-between items-start gap-4 mb-4">
-        <h3 className="text-lg font-medium text-zinc-900 group-hover:text-[#003366] transition-colors font-display">
-          {title}
-        </h3>
-        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-          status === 'ongoing' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-zinc-100 text-zinc-600'
-        }`}>
-          {lang === 'en' ? status : (status === 'ongoing' ? '进行中' : '已完成')}
-        </span>
-      </div>
-      <div className="space-y-2 text-sm text-zinc-600">
-        <p className="flex items-center gap-2">
-          <Calendar size={14} className="text-[#003366]/60" />
-          {duration}
-        </p>
-        <p className="flex items-start gap-2">
-          <ChevronRight size={14} className="text-amber-600 mt-1 shrink-0" />
-          <span><strong>{lang === 'en' ? 'Topic:' : '研究主题:'}</strong> {topic}</span>
-        </p>
-        {advisor && (
-          <p className="flex items-start gap-2">
-            <ChevronRight size={14} className="text-amber-600 mt-1 shrink-0" />
-            <span><strong>{lang === 'en' ? 'Advisor:' : '指导教授:'}</strong> {advisor}</span>
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function TimelineItem({ title, subtitle, date }: { title: string; subtitle: string; date: string }) {
-  return (
-    <div className="relative pl-6 border-l-2 border-zinc-200">
-      <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-[#003366]"></div>
-      <p className="text-xs font-serif italic text-amber-800 mb-1 font-medium">{date}</p>
-      <h4 className="text-base font-bold text-zinc-900">{title}</h4>
-      <p className="text-sm text-zinc-500">{subtitle}</p>
-    </div>
-  );
-}
-
-function HonorItem({ title, org, date }: { title: string; org: string; date: string }) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-600 shrink-0"></div>
-      <div>
-        <h4 className="text-sm font-semibold text-zinc-900">{title}</h4>
-        <p className="text-xs text-zinc-500">{org} • {date}</p>
-      </div>
-    </div>
-  );
-}
-
-function ExperienceItem({ role, desc, date }: { role: string; desc: string; date: string }) {
-  return (
-    <div className="p-3 bg-zinc-50 rounded-lg border border-zinc-100">
-      <div className="flex justify-between items-center mb-1">
-        <h4 className="text-sm font-semibold text-zinc-900">{role}</h4>
-        <span className="text-xs font-serif italic text-zinc-500">{date}</span>
-      </div>
-      <p className="text-xs text-zinc-500">{desc}</p>
-    </div>
-  );
-}
-
-function LinkItem({ href, label }: { href: string; label: string }) {
-  return (
-    <a 
-      href={href} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="flex items-center justify-between p-3 bg-white border border-zinc-200 rounded-xl hover:bg-amber-50/20 hover:border-amber-300 transition-all group"
-    >
-      <span className="text-sm font-medium text-zinc-700 group-hover:text-[#003366]">{label}</span>
-      <ExternalLink size={14} className="text-zinc-400 group-hover:text-[#003366]" />
-    </a>
-  );
-}
-
-function StarryLakeBackground() {
-  useEffect(() => {
-    const canvas = document.getElementById('starry-lake-canvas') as HTMLCanvasElement;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationId: number;
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    const handleResize = () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', handleResize);
-
-    interface Star {
-      xRatio: number;
-      yRatio: number;
-      size: number;
-      alpha: number;
-      twinkleSpeed: number;
-      color: string;
-    }
-
-    const stars: Star[] = [];
-    const starColors = ['#ffffff', '#e0f2fe', '#fef08a', '#fae8ff', '#bae6fd'];
-    for (let i = 0; i < 120; i++) {
-      stars.push({
-        xRatio: Math.random(),
-        yRatio: Math.random() * 0.75, // Sky portion of the container
-        size: Math.random() * 1.5 + 0.4,
-        alpha: Math.random(),
-        twinkleSpeed: (Math.random() * 0.01 + 0.003) * (Math.random() > 0.5 ? 1 : -1),
-        color: starColors[Math.floor(Math.random() * starColors.length)]
-      });
-    }
-
-    interface Meteor {
-      x: number;
-      y: number;
-      length: number;
-      speed: number;
-      angle: number;
-      alpha: number;
-      active: boolean;
-    }
-
-    const meteor: Meteor = {
-      x: 0,
-      y: 0,
-      length: 0,
-      speed: 0,
-      angle: 0,
-      alpha: 0,
-      active: false
-    };
-
-    const triggerMeteor = () => {
-      meteor.active = true;
-      meteor.x = Math.random() * (width * 0.7);
-      meteor.y = Math.random() * (height * 0.35);
-      meteor.length = Math.random() * 60 + 40;
-      meteor.speed = Math.random() * 4 + 3;
-      meteor.angle = Math.PI / 6 + Math.random() * (Math.PI / 12);
-      meteor.alpha = 1;
-    };
-
-    let tick = 0;
-    const render = () => {
-      tick++;
-      ctx.clearRect(0, 0, width, height);
-
-      const lakeY = height * 0.68; // Lake starts at 68% viewport height
-
-      // 1. Sky Gradient (Deep Indigo & Twilight Purple, anime style)
-      const skyGrad = ctx.createLinearGradient(0, 0, 0, lakeY);
-      skyGrad.addColorStop(0, '#020208');
-      skyGrad.addColorStop(0.35, '#0a0921');
-      skyGrad.addColorStop(0.7, '#1b143c');
-      skyGrad.addColorStop(0.9, '#301b58');
-      skyGrad.addColorStop(1, '#4a285d');
-      ctx.fillStyle = skyGrad;
-      ctx.fillRect(0, 0, width, lakeY);
-
-      // 2. Stars
-      stars.forEach(s => {
-        s.alpha += s.twinkleSpeed;
-        if (s.alpha > 1 || s.alpha < 0.15) {
-          s.twinkleSpeed = -s.twinkleSpeed;
-        }
-        ctx.fillStyle = s.color;
-        ctx.globalAlpha = Math.max(0.1, s.alpha);
-        ctx.beginPath();
-        ctx.arc(s.xRatio * width, s.yRatio * lakeY, s.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      });
-
-      // 3. Meteor (Shooting Star)
-      if (meteor.active) {
-        ctx.save();
-        ctx.strokeStyle = `rgba(186, 230, 253, ${meteor.alpha})`;
-        ctx.lineWidth = 1.25;
-        ctx.lineCap = 'round';
-        ctx.shadowColor = '#00e6b8';
-        ctx.shadowBlur = 6;
-        ctx.beginPath();
-        const endX = meteor.x - Math.cos(meteor.angle) * meteor.length;
-        const endY = meteor.y - Math.sin(meteor.angle) * meteor.length;
-        ctx.moveTo(meteor.x, meteor.y);
-        ctx.lineTo(endX, endY);
-        ctx.stroke();
-        ctx.restore();
-
-        meteor.x += Math.cos(meteor.angle) * meteor.speed;
-        meteor.y += Math.sin(meteor.angle) * meteor.speed;
-        
-        if (meteor.y > lakeY - 40) {
-          meteor.alpha -= 0.04;
-        }
-        if (meteor.alpha <= 0 || meteor.x > width || meteor.y > lakeY) {
-          meteor.active = false;
-        }
-      } else if (Math.random() < 0.002) {
-        triggerMeteor();
-      }
-
-      // 4. Behind Mountain Silhouette
-      ctx.fillStyle = '#0a061a';
-      ctx.beginPath();
-      ctx.moveTo(0, lakeY);
-      ctx.bezierCurveTo(width * 0.25, lakeY - 35, width * 0.4, lakeY - 10, width * 0.55, lakeY - 22);
-      ctx.bezierCurveTo(width * 0.7, lakeY - 38, width * 0.85, lakeY - 15, width, lakeY);
-      ctx.lineTo(width, lakeY + 10);
-      ctx.lineTo(0, lakeY + 10);
-      ctx.closePath();
-      ctx.fill();
-
-      // Front Mountain Silhouette (Warm tone silhouette)
-      ctx.fillStyle = '#140c26';
-      ctx.beginPath();
-      ctx.moveTo(0, lakeY);
-      ctx.bezierCurveTo(width * 0.15, lakeY - 20, width * 0.35, lakeY - 5, width * 0.5, lakeY - 12);
-      ctx.bezierCurveTo(width * 0.65, lakeY - 25, width * 0.8, lakeY - 8, width, lakeY);
-      ctx.lineTo(width, lakeY + 10);
-      ctx.lineTo(0, lakeY + 10);
-      ctx.closePath();
-      ctx.fill();
-
-      // 5. Lake Surface Gradient
-      const lakeGrad = ctx.createLinearGradient(0, lakeY, 0, height);
-      lakeGrad.addColorStop(0, '#0d0822');
-      lakeGrad.addColorStop(0.5, '#050311');
-      lakeGrad.addColorStop(1, '#010005');
-      ctx.fillStyle = lakeGrad;
-      ctx.fillRect(0, lakeY, width, height - lakeY);
-
-      // 6. Star Mirror Reflections (gently undulating with horizontal ripples)
-      ctx.save();
-      stars.forEach((s, idx) => {
-        if (idx % 2 === 0 && s.alpha > 0.25) {
-          const starRealX = s.xRatio * width;
-          const starRealY = s.yRatio * lakeY;
-          const reflectY = lakeY + (lakeY - starRealY) * 0.38;
-          if (reflectY < height) {
-            const waveOffset = Math.sin(tick * 0.015 + idx) * 1.5;
-            ctx.fillStyle = '#93c5fd';
-            ctx.globalAlpha = s.alpha * 0.2;
-            ctx.beginPath();
-            ctx.ellipse(starRealX + waveOffset, reflectY, s.size * 2.2, s.size * 0.5, 0, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-      });
-      ctx.restore();
-
-      // Ambient horizontal ripple streaks
-      ctx.save();
-      ctx.strokeStyle = '#8b5cf6';
-      ctx.globalAlpha = 0.05;
-      for (let i = 0; i < 12; i++) {
-        const yCoord = lakeY + (height - lakeY) * ((i + 1) / 13);
-        const waveLen = Math.sin(tick * 0.006 + i) * 50 + (width * 0.28);
-        const centerPos = width / 2 + Math.cos(tick * 0.003 + i) * 80;
-        ctx.lineWidth = 0.75;
-        ctx.beginPath();
-        ctx.moveTo(centerPos - waveLen, yCoord);
-        ctx.lineTo(centerPos + waveLen, yCoord);
-        ctx.stroke();
-      }
-      ctx.restore();
-
-      animationId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
-
-  return (
-    <canvas
-      id="starry-lake-canvas"
-      className="fixed inset-0 w-full h-full -z-20 pointer-events-none"
-    />
-  );
-}
+export default App;
