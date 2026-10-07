@@ -222,3 +222,55 @@ a { color: inherit; text-decoration: none; }
   .skills-block { padding-top: 36px; }
   .site-footer { flex-direction: column; gap: 9px; }
 }
+
+/* Stronger editorial contrast: warm paper, ink blue, and one restrained terracotta accent. */
+:root { color: #1f2d3d; background: #f1eee8; }
+body, .page { background: #f1eee8; }
+.site-header { border-bottom-color: #b9b8b1; }
+.wordmark-name { color: #102c4a; }
+.wordmark-sub, .site-nav button, .language-toggle { color: #485765; }
+.site-nav button:hover, .language-toggle:hover { color: #a8422d; }
+.intro-section {
+  width: min(1040px, calc(100% - 56px));
+  margin-top: 28px;
+  padding: 82px 68px 88px;
+  background: #e3d9cb;
+  border-left: 5px solid #a8422d;
+}
+.intro-copy h1 { color: #102c4a; }
+.intro-copy h1 span { color: #5c6570; }
+.intro-lead { color: #20384f; }
+.intro-next { color: #5b554e; }
+.intro-meta { color: #5a5f62; }
+.text-button { color: #fff; background: #173b5c; border: 0; padding: 10px 14px; }
+.text-button:hover { color: #fff; background: #a8422d; }
+.text-button.muted { color: #173b5c; background: transparent; border: 1px solid #173b5c; }
+.text-button.muted:hover { color: #fff; background: #173b5c; }
+.portrait-wrap img { border: 1px solid #173b5c; }
+.portrait-wrap p { color: #625d57; }
+.page-section { border-top-color: #b9b8b1; }
+.section-label, .plain-label { color: #a8422d; }
+.section-heading h2 { color: #102c4a; }
+.body-copy { color: #3f4c58; }
+.research-item, .project-item, .education-item { border-top-color: #b9b8b1; }
+.research-item { border-top-width: 2px; }
+.research-item h3, .project-info h3, .education-item h3 { color: #173b5c; }
+.research-item p, .project-info p, .education-item p { color: #4b5660; }
+.skills-block { padding: 25px 28px; background: #e3d9cb; border-top: 4px solid #a8422d; }
+.skills-block li { border-bottom-color: #c2b9ae; color: #30485f; }
+.contact-section {
+  margin-top: 20px;
+  padding: 56px 42px 68px;
+  border-top: 0;
+  background: #173b5c;
+}
+.contact-section .section-label, .contact-section .plain-label { color: #e3a085; }
+.contact-section .section-heading h2, .contact-section .body-copy { color: #f4efe8; }
+.contact-links a, .contact-links button { color: #f4efe8; border-bottom-color: #9bb0c1; }
+.contact-links a:hover, .contact-links button:hover { color: #fff; border-bottom-color: #e3a085; }
+.site-footer { border-top-color: #b9b8b1; color: #6a6c6d; }
+
+@media (max-width: 760px) {
+  .intro-section { width: min(100% - 36px, 600px); margin-top: 18px; padding: 53px 25px 60px; }
+  .contact-section { padding: 43px 25px 55px; }
+}
